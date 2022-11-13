@@ -28,7 +28,14 @@ export const execute = async (
     .setTitle(`${emoji.gift} Top.gg Birthday Gift Leaderboard`)
     .setColor(`#ff3366`)
     .setDescription(
-      res.rows.map((r) => `**${r.user_rank}.** <@${r.userid}> - **${r.gifts}** ${r.gifts > 1 ? 'gifts' : 'gift'}`).join('\n')
+      res.rows
+        .map(
+          (r) =>
+            `**${r.user_rank}.** <@${r.userid}> - **${r.gifts}** ${
+              r.gifts > 1 ? 'gifts' : 'gift'
+            }`
+        )
+        .join('\n')
     )
 
   interaction.reply({ embeds: [leaderboardEmbed], ephemeral: true })

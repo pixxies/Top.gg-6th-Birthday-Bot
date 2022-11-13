@@ -30,7 +30,6 @@ export const execute = async (
       .substring(interaction.customId.indexOf('_') + 1)
       .substring(0, 1)
   )
-  console.log(questionIndex)
 
   const question = questions[questionIndex]
 
@@ -39,7 +38,6 @@ export const execute = async (
   const answerNumber = interaction.customId
     .substring(interaction.customId.indexOf('_') + 1)
     .substring(6)
-  console.log(answerNumber)
 
   const res = await query(
     'SELECT * FROM quiz WHERE userid = $1 AND question = $2',
@@ -59,17 +57,18 @@ export const execute = async (
 
   const timerEnd = questionTimer - timeToAnswer
 
-  console.log(`TIMER: ${timerEnd}`)
   const correct = question.answer === answerNumber ? 1 : 0
 
-  interaction
-    .reply({
-      embeds: [
-        infoEmbed(`We saved your answer, ${interaction.user.username}!`, `Make sure your DMs are open to see if your answer was correct!`),
-      ],
-      ephemeral: true,
-      fetchReply: true,
-    })
+  interaction.reply({
+    embeds: [
+      infoEmbed(
+        `We saved your answer, ${interaction.user.username}!`,
+        `Make sure your DMs are open to see if your answer was correct!`
+      ),
+    ],
+    ephemeral: true,
+    fetchReply: true,
+  })
 
   setTimeout(() => {
     if (correct === 1)
