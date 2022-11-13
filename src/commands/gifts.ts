@@ -26,16 +26,19 @@ export const execute = async (
     return interaction.reply({ embeds: [errorEmbed('No leaderboard found')] })
 
   const myRank = res.rows.find((r) => r.userid === interaction.user.id)
-  if(!myRank) return interaction.reply({
-    embeds: [
-      errorEmbed(
-        `You haven't claimed any gifts yet!`,
-        `Gifts spawn randomly in <#264445053596991498>! When you see one, make sure to quickly click the "Claim!" button before anyone else!`
-      ),
-    ],
-  })
+  if (!myRank)
+    return interaction.reply({
+      embeds: [
+        errorEmbed(
+          `You haven't claimed any gifts yet!`,
+          `Gifts spawn randomly in <#264445053596991498>! When you see one, make sure to quickly click the "Claim!" button before anyone else!`
+        ),
+      ],
+    })
 
-  const myGifts = new Map([...giftCache].filter(([k, v]) => k && v === interaction.user.id))
+  const myGifts = new Map(
+    [...giftCache].filter(([k, v]) => k && v === interaction.user.id)
+  )
 
   const lastClaimed = [...myGifts].reduce((a, e) => (e[1] > a[1] ? a : e))
 
