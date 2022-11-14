@@ -8,9 +8,6 @@ import {
   GuildTextBasedChannel,
   SlashCommandBuilder,
 } from 'discord.js'
-// import { query } from '../db'
-// import { errorEmbed } from '../utils/embeds'
-// import { emoji } from '../utils/emojis'
 import questions from '../assets/quiz/questions.json'
 import { questionTimer } from '../globals'
 import { emoji } from '../utils/emojis'
@@ -35,7 +32,7 @@ export const execute = async (
   const number = interaction.options.get('number')?.value as number
   const question = questions[number - 1]
   if (!question?.options) return
-  const timerDuration = questionTimer // milliseconds
+  const timerDuration = questionTimer
   const timerStart = new Date()
   const timerEnd = Math.round(
     timerStart.setSeconds(timerStart.getSeconds() + timerDuration / 1000) / 1000
