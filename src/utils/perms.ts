@@ -1,6 +1,1 @@
 export * from './perms/isStaffMember'
-export * from './perms/isCM'
-export * from './perms/isMentor'
-export * from './perms/isMod'
-export * from './perms/isBR'
-export * from './perms/isStaffAlt'

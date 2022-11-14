@@ -1,7 +1,7 @@
 import { Client } from 'discord.js'
 
 const topggGuild = (_client: Client) => {
-  return _client.guilds.cache.get('1039907498892738570')
+  return _client.guilds.cache.get('264445053596991498')
 }
 
 const staffRoles = {
@@ -16,4 +16,7 @@ const staffRoles = {
 
 const questionTimer = 10000
 
-export { topggGuild, staffRoles, questionTimer }
+const giftGenMin = 3600000
+const giftGenMax = 7200000
+
+export { topggGuild, staffRoles, questionTimer, giftGenMin, giftGenMax }

@@ -37,23 +37,6 @@ const commandHandler = async (client: Client) => {
     console.log('No commands to register with Discord.')
   }
 
-  // Deal with incoming modal data
-  const modalsPath = path.join(__dirname, 'modals')
-
-  const modals: Array<{
-    name: string
-    function: Function
-  }> = []
-
-  fs.readdirSync(modalsPath).forEach((file) => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { modal, execute } = require(path.join(modalsPath, file))
-
-    modals.push({ name: modal.name, function: execute })
-
-    console.log('Registered modal:', modal.name)
-  })
-
   // Deal with incoming buttons data
   const buttonsPath = path.join(__dirname, 'buttons')
 
@@ -80,21 +63,6 @@ const commandHandler = async (client: Client) => {
           command.function(client, interaction)
         }
       })
-    }
-
-    // Modals
-    if (interaction.isModalSubmit()) {
-      const modalType = interaction.customId.substring(
-        0,
-        interaction.customId.indexOf('_')
-      )
-      if (modalType) {
-        modals.map((modal) => {
-          if (modal.name === modalType) {
-            modal.function(client, interaction)
-          }
-        })
-      }
     }
 
     // Buttons

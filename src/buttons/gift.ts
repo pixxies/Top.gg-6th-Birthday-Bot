@@ -1,7 +1,7 @@
 import { ButtonInteraction, Client } from 'discord.js'
 import { query } from '../db'
 import { errorEmbed, successEmbed } from '../utils/embeds'
-import { isStaffAlt, isStaffMember } from '../utils/perms'
+import { isStaffMember } from '../utils/perms'
 import { giftCache } from '../utils/functions/giftCache'
 
 export const button = {
@@ -30,10 +30,7 @@ export const execute = async (
   giftCache.set(giftTimestamp, interaction.user.id)
   console.log(giftCache)
 
-  if (
-    (await isStaffMember(interaction.user)) ||
-    (await isStaffAlt(interaction.user))
-  )
+  if (await isStaffMember(interaction.user))
     return interaction.reply({
       embeds: [
         errorEmbed(

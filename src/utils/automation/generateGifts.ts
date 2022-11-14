@@ -9,7 +9,7 @@ import {
   GuildTextBasedChannel,
 } from 'discord.js'
 import { query } from '../../db'
-import { topggGuild } from '../../globals'
+import { giftGenMax, giftGenMin, topggGuild } from '../../globals'
 import { getGift } from '../functions/getGift'
 import { giftCache } from '../functions/giftCache'
 
@@ -21,7 +21,7 @@ export async function generateGifts(client: Client) {
   })
 
   const spawnChannel = topggGuild(client)?.channels.cache.find(
-    (c) => c.name === 'general'
+    (c) => c.name === 'bot-reviewers'
   ) as GuildTextBasedChannel
 
   function spawnGift() {
@@ -49,7 +49,8 @@ export async function generateGifts(client: Client) {
     })
   }
   ;(function loop() {
-    const rand = Math.round(Math.random() * (30000 - 5000)) + 500
+    const rand =
+      Math.round(Math.random() * (giftGenMax - giftGenMin)) + giftGenMin
     setTimeout(function () {
       spawnGift()
       loop()

@@ -22,7 +22,10 @@ export const execute = async (
     []
   )
   if (!res.rows.length)
-    return interaction.reply({ embeds: [errorEmbed('No leaderboard found')] })
+    return interaction.reply({
+      embeds: [errorEmbed('No leaderboard found')],
+      ephemeral: true,
+    })
 
   const leaderboardEmbed = new EmbedBuilder()
     .setTitle(`${emoji.gift} Top.gg Birthday Gift Leaderboard`)

@@ -1,7 +1,6 @@
 import { Client, Partials, GatewayIntentBits } from 'discord.js'
-import eventHandler from './eventHandler'
 import commandHandler from './commandHandler'
-// import { generateGifts } from './utils/automation/generateGifts'
+import { generateGifts } from './utils/automation/generateGifts'
 
 // Configure client
 const client = new Client({
@@ -37,11 +36,8 @@ client.on('ready', async () => {
       },
     ],
   })
-  // generateGifts(client)
+  generateGifts(client)
 })
-
-// Register events
-eventHandler(client)
 
 // Register commands
 commandHandler(client)
