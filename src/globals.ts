@@ -14,7 +14,7 @@ const staffRoles = {
   team: '742408262648987748',
 }
 
-const questionTimer = 10000
+const questionTimer = 30000
 
 const giftGenMin = 3600000
 const giftGenMax = 7200000
