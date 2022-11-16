@@ -15,10 +15,10 @@ import { giftCache } from '../functions/giftCache'
 
 export async function generateGifts(client: Client) {
   const res = await query('SELECT * FROM claimed', [])
-  if (!res.rows.length) return
-  res.rows.forEach((gift) => {
-    giftCache.set(gift.giftid, gift.userid)
-  })
+  if (res.rows.length)
+    res.rows.forEach((gift) => {
+      giftCache.set(gift.giftid, gift.userid)
+    })
 
   const spawnChannel = topggGuild(client)?.channels.cache.find(
     (c) => c.name === 'bot-reviewers'

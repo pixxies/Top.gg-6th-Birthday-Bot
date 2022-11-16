@@ -34,6 +34,7 @@ export const execute = async (
           `Gifts spawn randomly in <#264445053596991498>! When you see one, make sure to quickly click the "Claim!" button before anyone else!`
         ),
       ],
+      ephemeral: true,
     })
 
   const myGifts = new Map(
