@@ -23,7 +23,7 @@ export const emoji = {
   offline: '<:offline:1008352707431641211>',
   warning: '<:warning:1011673314114150523>',
   error: '<:topgg_opt_no:1026871575418503299>',
-  blueinfo: '<:info:1012714338303344660>',
+  blueinfo: '<:info:1043907044262027395>',
   bradd: '<:br_add:1011674270885236786>',
   gift: '<:topgg_ico_gift:1026869992303640618>',
 }
