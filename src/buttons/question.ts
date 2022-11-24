@@ -36,9 +36,9 @@ export const execute = async (
 
   if (!question) return
 
-  const answerNumber = interaction.customId
-    .substring(interaction.customId.indexOf('_') + 1)
-    .substring(6)
+  const answerNumber = questionIndexStr.substring(
+    questionIndexStr.indexOf('_') + 5
+  )
 
   const res = await query(
     'SELECT * FROM quiz WHERE userid = $1 AND question = $2',
