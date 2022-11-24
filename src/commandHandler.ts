@@ -77,6 +77,12 @@ const commandHandler = async (client: Client) => {
             button.function(client, interaction)
           }
         })
+      } else {
+        buttons.map((button) => {
+          if (button.name === interaction.customId) {
+            button.function(client, interaction)
+          }
+        })
       }
     }
   })
