@@ -44,14 +44,13 @@ export const execute = async (
   const lastClaimed = [...myGifts].reduce((a, e) => (e[1] > a[1] ? a : e))
 
   const leaderboardEmbed = new EmbedBuilder()
-    .setTitle(`${emoji.gift} ${interaction.user.username}'s inventory`)
+    .setTitle(`${emoji.gift} ${interaction.user.username}'s Inventory`)
     .setColor(`#ff3366`)
     .setThumbnail(interaction.user.displayAvatarURL())
     .addFields(
       {
         name: 'My Rank',
         value: `🏆 **#${myRank.user_rank}** of ${res.rowCount} players`,
-        inline: true,
       },
       {
         name: 'Gifts Claimed',
@@ -61,6 +60,13 @@ export const execute = async (
       {
         name: 'Last Gift Claimed',
         value: `⏰ <t:${lastClaimed[0]}:R>`,
+        inline: true,
+      },
+      {
+        name: 'Chance of winning',
+        value: `🤞 \`${((myRank.gifts / [...giftCache].length) * 100).toFixed(
+          2
+        )}%\``,
         inline: true,
       }
     )
