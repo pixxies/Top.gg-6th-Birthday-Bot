@@ -1,4 +1,10 @@
-import { ButtonInteraction, Client } from 'discord.js'
+import {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonInteraction,
+  ButtonStyle,
+  Client,
+} from 'discord.js'
 import { query } from '../db'
 import { errorEmbed, successEmbed } from '../utils/embeds'
 // import { isStaffMember } from '../utils/perms'
@@ -39,9 +45,18 @@ export const execute = async (
   //     ephemeral: true,
   //   })
 
+  const buttons = new ActionRowBuilder<ButtonBuilder>().addComponents(
+    new ButtonBuilder()
+      .setCustomId(`aboutGifts`)
+      .setEmoji('1026869992303640618')
+      .setStyle(ButtonStyle.Secondary)
+      .setLabel(`What's this?`)
+  )
+
   interaction.message.delete()
   interaction.channel?.send({
     embeds: [successEmbed(`${interaction.user.username} claimed a gift!`)],
+    components: [buttons],
   })
 
   query(`INSERT INTO claimed (userid, giftid) VALUES ($1, $2)`, [
