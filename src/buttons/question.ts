@@ -25,10 +25,11 @@ export const execute = async (
   //     ephemeral: true,
   //   })
 
+  const questionIndexStr = interaction.customId.substring(
+    interaction.customId.indexOf('_') + 1
+  )
   const questionIndex = Number(
-    interaction.customId
-      .substring(interaction.customId.indexOf('_') + 1)
-      .substring(0, 1)
+    questionIndexStr.substring(0, questionIndexStr.indexOf('_'))
   )
 
   const question = questions[questionIndex]
@@ -44,12 +45,18 @@ export const execute = async (
     [interaction.user.id, questionIndex + 1]
   )
 
-  if (res.rows.length)
-    return interaction.editReply({
+  if (res.rows.length) {
+    interaction.deferUpdate()
+    return interaction.user.send({
       embeds: [
-        errorEmbed(`${interaction.user.username}, you've already answered!`),
+        errorEmbed(
+          `${interaction.user.username}, you've already answered question #${
+            questionIndex + 1
+          }!`
+        ),
       ],
     })
+  }
 
   const timeToAnswer = Math.round(
     interaction.createdTimestamp - interaction.message.createdTimestamp
