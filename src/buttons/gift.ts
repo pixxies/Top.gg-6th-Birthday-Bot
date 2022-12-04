@@ -7,7 +7,7 @@ import {
 } from 'discord.js'
 import { query } from '../db'
 import { errorEmbed, successEmbed } from '../utils/embeds'
-// import { isStaffMember } from '../utils/perms'
+import { isStaffMember } from '../utils/perms'
 import { giftCache } from '../utils/functions/giftCache'
 
 export const button = {
@@ -35,15 +35,15 @@ export const execute = async (
 
   giftCache.set(giftTimestamp, interaction.user.id)
 
-  // if (await isStaffMember(interaction.user))
-  //   return interaction.reply({
-  //     embeds: [
-  //       errorEmbed(
-  //         `Sorry ${interaction.user.username}! Staff cannot participate!`
-  //       ),
-  //     ],
-  //     ephemeral: true,
-  //   })
+  if (await isStaffMember(interaction.user))
+    return interaction.reply({
+      embeds: [
+        errorEmbed(
+          `Sorry ${interaction.user.username}! Staff cannot participate!`
+        ),
+      ],
+      ephemeral: true,
+    })
 
   const buttons = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
