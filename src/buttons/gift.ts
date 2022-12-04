@@ -59,9 +59,13 @@ export const execute = async (
     components: [buttons],
   })
 
-  query(`INSERT INTO claimed (userid, giftid) VALUES ($1, $2)`, [
+  const timeToClaim =
+    Number(giftTimestamp) - Math.round(new Date().getTime() / 1000)
+
+  query(`INSERT INTO claimed (userid, giftid, ttc) VALUES ($1, $2, $3)`, [
     interaction.user.id,
     giftTimestamp,
+    timeToClaim,
   ])
   return
 }
