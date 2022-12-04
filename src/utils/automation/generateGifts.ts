@@ -21,7 +21,7 @@ export async function generateGifts(client: Client) {
     })
 
   const spawnChannel = topggGuild(client)?.channels.cache.find(
-    (c) => c.name === 'bot-reviewers'
+    (c) => c.name === 'general'
   ) as GuildTextBasedChannel
 
   function spawnGift() {
