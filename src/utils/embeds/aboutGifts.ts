@@ -11,7 +11,11 @@ const aboutEmbed = new EmbedBuilder()
   .addFields(
     {
       name: '👀 How does it work?',
-      value: `<:topggDotRed:921606879107502130> Every 1 to 2 hours, a gift will randomly spawn in <#264445053596991498>.\n<:topggDotRed:921606879107502130> Race to click the **Claim** button to add the gift to your inventory\n<:topggDotRed:921606879107502130> Each gift = 1 entry to the giveaway.\n<:topggDotRed:921606879107502130> At the end of the event we'll pick a random player to win the grand prize.`,
+      value: `<:topggDotRed:921606879107502130> Every 1 to 2 hours, a gift will randomly spawn in <#264445053596991498>.\n<:topggDotRed:921606879107502130> Click **Claim** to add the gift to your inventory.\n<:topggDotRed:921606879107502130> Each gift = 1 entry to the giveaway.\n<:topggDotRed:921606879107502130> On January 2nd, one random gift will be chosen to win the grand prize.`,
+    },
+    {
+      name: '🏆 What is the Grand Prize?',
+      value: `<:topggDotRed:921606879107502130> 1 year of Discord Nitro.\n<:topggDotRed:921606879107502130> 1 month of Medal Premium\n<:topggDotRed:921606879107502130> $50 Top.gg Auctions coupon`,
     },
     {
       name: '💡 Tips',
