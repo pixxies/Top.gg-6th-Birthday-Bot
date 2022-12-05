@@ -23,7 +23,10 @@ export const execute = async (
     []
   )
   if (!res.rows.length)
-    return interaction.reply({ embeds: [errorEmbed('No leaderboard found')] })
+    return interaction.reply({
+      embeds: [errorEmbed('No leaderboard found')],
+      ephemeral: true,
+    })
 
   const myRank = res.rows.find((r) => r.userid === interaction.user.id)
   if (!myRank)
