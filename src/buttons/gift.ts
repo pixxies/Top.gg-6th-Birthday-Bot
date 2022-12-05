@@ -20,6 +20,16 @@ export const execute = async (
 ) => {
   if (!interaction.inCachedGuild()) return
 
+  if (await isStaffMember(interaction.user))
+    return interaction.reply({
+      embeds: [
+        errorEmbed(
+          `Sorry ${interaction.user.username}! Staff cannot participate!`
+        ),
+      ],
+      ephemeral: true,
+    })
+
   const giftTimestamp = interaction.customId.substring(
     interaction.customId.indexOf('_') + 1
   )
@@ -34,16 +44,6 @@ export const execute = async (
     })
 
   giftCache.set(giftTimestamp, interaction.user.id)
-
-  if (await isStaffMember(interaction.user))
-    return interaction.reply({
-      embeds: [
-        errorEmbed(
-          `Sorry ${interaction.user.username}! Staff cannot participate!`
-        ),
-      ],
-      ephemeral: true,
-    })
 
   const buttons = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
