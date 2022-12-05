@@ -60,7 +60,7 @@ export const execute = async (
   })
 
   const timeToClaim =
-    Number(giftTimestamp) - Math.round(new Date().getTime() / 1000)
+    Math.round(new Date().getTime() / 1000) - Number(giftTimestamp)
 
   query(`INSERT INTO claimed (userid, giftid, ttc) VALUES ($1, $2, $3)`, [
     interaction.user.id,
