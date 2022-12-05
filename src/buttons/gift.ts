@@ -20,16 +20,6 @@ export const execute = async (
 ) => {
   if (!interaction.inCachedGuild()) return
 
-  if (await isStaffMember(interaction.user))
-    return interaction.reply({
-      embeds: [
-        errorEmbed(
-          `Sorry ${interaction.user.username}! Staff cannot participate!`
-        ),
-      ],
-      ephemeral: true,
-    })
-
   const giftTimestamp = interaction.customId.substring(
     interaction.customId.indexOf('_') + 1
   )
@@ -38,6 +28,16 @@ export const execute = async (
       embeds: [
         errorEmbed(
           `Sorry ${interaction.user.username}! This gift has already been claimed!`
+        ),
+      ],
+      ephemeral: true,
+    })
+
+  if (await isStaffMember(interaction.user))
+    return interaction.reply({
+      embeds: [
+        errorEmbed(
+          `Sorry ${interaction.user.username}! Staff cannot participate!`
         ),
       ],
       ephemeral: true,
