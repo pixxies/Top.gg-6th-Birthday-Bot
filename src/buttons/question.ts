@@ -1,7 +1,7 @@
 import { ButtonInteraction, Client } from 'discord.js'
 import { query } from '../db'
 import { errorEmbed, infoEmbed, successEmbed } from '../utils/embeds'
-import { isStaffMember } from '../utils/perms'
+// import { isStaffMember } from '../utils/perms'
 import questions from '../assets/quiz/questions.json'
 import { questionTimer } from '../globals'
 
@@ -15,15 +15,15 @@ export const execute = async (
 ) => {
   if (!interaction.inCachedGuild()) return
 
-  if (await isStaffMember(interaction.user))
-    return interaction.reply({
-      embeds: [
-        errorEmbed(
-          `Sorry ${interaction.user.username}! Staff cannot participate!`
-        ),
-      ],
-      ephemeral: true,
-    })
+  // if (await isStaffMember(interaction.user))
+  //   return interaction.reply({
+  //     embeds: [
+  //       errorEmbed(
+  //         `Sorry ${interaction.user.username}! Staff cannot participate!`
+  //       ),
+  //     ],
+  //     ephemeral: true,
+  //   })
 
   const questionIndexStr = interaction.customId.substring(
     interaction.customId.indexOf('_') + 1
