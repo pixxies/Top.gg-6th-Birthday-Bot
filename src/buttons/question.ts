@@ -1,6 +1,6 @@
 import { ButtonInteraction, Client } from 'discord.js'
 import { query } from '../db'
-import { infoEmbed } from '../utils/embeds'
+import { errorEmbed, infoEmbed } from '../utils/embeds'
 import { isStaffMember } from '../utils/perms'
 import questions from '../assets/quiz/questions.json'
 
