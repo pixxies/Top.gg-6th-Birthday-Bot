@@ -1,3 +1,4 @@
+import { randomInt } from 'node:crypto'
 import {
   ActionRowBuilder,
   AttachmentBuilder,
@@ -49,8 +50,8 @@ export async function generateGifts(client: Client) {
     })
   }
   ;(function loop() {
-    const rand =
-      Math.round(Math.random() * (giftGenMax - giftGenMin)) + giftGenMin
+    const rand = randomInt(giftGenMin, giftGenMax)
+
     setTimeout(function () {
       spawnGift()
       loop()

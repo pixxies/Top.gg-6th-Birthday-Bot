@@ -5,43 +5,41 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "engines": {
-      "node": ">=18",
-      "npm": ">=8"
+    "node": ">=18",
+    "npm": ">=8"
   },
   "bugs": {
-      "url": "https://github.com/pixxies/Top.gg-6th-Birthday-Bot/issues"
-
+    "url": "https://github.com/pixxies/Top.gg-6th-Birthday-Bot/issues"
   },
   "repository": {
-      "type": "git",
-      "url": "git@github.com:pixxies/Top.gg-6th-Birthday-Bot.git"
-
+    "type": "git",
+    "url": "git@github.com:pixxies/Top.gg-6th-Birthday-Bot.git"
   },
   "scripts": {
-      "format": "prettier --check \"**/*.{ts,tsx,js,md}\"",
-      "format:fix": "prettier --write \"**/*.{ts,tsx,js,md}\"",
-      "lint": "eslint .",
-      "lint:fix": "eslint --fix .",
-      "test": "echo \"Todo: add tests\" && exit 0",
-      "clean": "rm -rf dist",
-      "build": "npm run clean && tsc",
-      "start": "node -r dotenv/config dist/index.js",
-      "dev": "nodemon --watch src --exec \"npm run build && npm start\" --ext \"ts,json\""
+    "format": "prettier --check \"**/*.{ts,tsx,js,md}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,md}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "echo \"Todo: add tests\" && exit 0",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
+    "start": "node -r dotenv/config dist/index.js",
+    "dev": "nodemon --watch src --exec \"npm run build && npm start\" --ext \"ts,json\""
   },
   "dependencies": {
-      "@discordjs/rest": "1.1.0",
-      "discord.js": "14.3.0",
-      "dotenv": "16.0.2",
-      "pg": "8.8.0"
+    "@discordjs/rest": "1.4.0",
+    "discord.js": "14.7.1",
+    "dotenv": "16.0.3",
+    "pg": "8.8.0"
   },
   "devDependencies": {
-      "@types/pg": "8.6.5",
-      "@typescript-eslint/eslint-plugin": "5.37.0",
-      "@typescript-eslint/parser": "5.37.0",
-      "eslint": "8.23.1",
-      "eslint-config-prettier": "8.5.0",
-      "nodemon": "2.0.19",
-      "prettier": "2.7.1",
-      "typescript": "4.8.3"
+    "@types/pg": "8.6.5",
+    "@typescript-eslint/eslint-plugin": "5.46.0",
+    "@typescript-eslint/parser": "5.46.0",
+    "eslint": "8.29.0",
+    "eslint-config-prettier": "8.5.0",
+    "nodemon": "2.0.20",
+    "prettier": "2.8.1",
+    "typescript": "4.9.4"
   }
 }
