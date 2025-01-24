@@ -48,24 +48,38 @@ export const execute = async (
   const buttons = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId(`aboutGifts`)
-      .setEmoji('1026869992303640618')
+      .setEmoji('🥦')
       .setStyle(ButtonStyle.Secondary)
       .setLabel(`What's this?`)
   )
 
   interaction.message.delete()
-  interaction.channel?.send({
-    embeds: [successEmbed(`${interaction.user.username} claimed a gift!`)],
-    components: [buttons],
-  })
 
-  const timeToClaim =
-    Math.round(new Date().getTime() / 1000) - Number(giftTimestamp)
+  const claimTime = new Date().getTime()
+  const timeToClaim = Math.round(claimTime / 1000) - Number(giftTimestamp)
 
-  query(`INSERT INTO claimed (userid, giftid, ttc) VALUES ($1, $2, $3)`, [
-    interaction.user.id,
-    giftTimestamp,
-    timeToClaim,
-  ])
-  return
+  try {
+    query(
+      `INSERT INTO pixxiebotbday.claimed (userid, giftid, ttc, timestamp) VALUES ($1, $2, $3, $4)`,
+      [interaction.user.id, giftTimestamp, timeToClaim, claimTime]
+    )
+    interaction.channel?.send({
+      embeds: [
+        successEmbed(
+          `${interaction.member.displayName} ate a piece of broccoli!`
+        ),
+      ],
+      components: [buttons],
+    })
+    return
+  } catch {
+    return interaction.reply({
+      embeds: [
+        errorEmbed(
+          `Sorry ${interaction.user.username}! This gift has already been claimed!`
+        ),
+      ],
+      ephemeral: true,
+    })
+  }
 }

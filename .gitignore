@@ -109,3 +109,4 @@ dist
 .DS_Store
 
 src/assets/quiz/*.json
+package-lock.json

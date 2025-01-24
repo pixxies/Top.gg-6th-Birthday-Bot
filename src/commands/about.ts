@@ -4,7 +4,7 @@ import aboutEmbed from '../utils/embeds/aboutGifts'
 
 export const command = new SlashCommandBuilder()
   .setName('about')
-  .setDescription('See what the gift claim event is about')
+  .setDescription('About the Broccoli Eating Contest')
   .setDMPermission(false)
 
 export const execute = async (

@@ -10,7 +10,6 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildPresences,
   ],
   // Enabling all partials
   partials: [

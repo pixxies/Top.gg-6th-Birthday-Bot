@@ -6,11 +6,11 @@ import {
 } from 'discord.js'
 import { query } from '../db'
 import { errorEmbed } from '../utils/embeds'
-import { emoji } from '../utils/emojis'
+// import { emoji } from '../utils/emojis'
 
 export const command = new SlashCommandBuilder()
   .setName('leaderboard')
-  .setDescription('See the top 10 gift claimers!')
+  .setDescription('See the top 10 broccoli eaters!')
   .setDMPermission(false)
 
 export const execute = async (
@@ -18,7 +18,7 @@ export const execute = async (
   interaction: CommandInteraction
 ) => {
   const res = await query(
-    'SELECT userid, COUNT(userid) as gifts, RANK() OVER (ORDER BY COUNT(userid) DESC) user_rank FROM claimed GROUP BY userid ORDER BY gifts DESC LIMIT 10',
+    'SELECT userid, COUNT(userid) as gifts, RANK() OVER (ORDER BY COUNT(userid) DESC) user_rank FROM pixxiebotbday.claimed GROUP BY userid ORDER BY gifts DESC LIMIT 10',
     []
   )
   if (!res.rows.length)
@@ -28,14 +28,14 @@ export const execute = async (
     })
 
   const leaderboardEmbed = new EmbedBuilder()
-    .setTitle(`${emoji.gift} Top.gg Birthday Gift Leaderboard`)
-    .setColor(`#ff3366`)
+    .setTitle(`🏆 Broccoli Eating Leaderboard`)
+    .setColor(`#DE3268`)
     .setDescription(
       res.rows
         .map(
           (r) =>
             `**${r.user_rank}.** <@${r.userid}> - **${r.gifts}** ${
-              r.gifts > 1 ? 'gifts' : 'gift'
+              r.gifts > 1 ? '🥦' : '🥦'
             }`
         )
         .join('\n')

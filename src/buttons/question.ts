@@ -3,6 +3,7 @@ import { query } from '../db'
 import { errorEmbed, infoEmbed } from '../utils/embeds'
 import { isStaffMember } from '../utils/perms'
 import questions from '../assets/quiz/questions.json'
+import { emoji } from '../utils/emojis'
 
 export const button = {
   name: 'question',
@@ -40,7 +41,7 @@ export const execute = async (
   )
 
   const res = await query(
-    'SELECT * FROM quiz WHERE userid = $1 AND question = $2',
+    'SELECT * FROM pixxiebotbday.quiz WHERE userid = $1 AND question = $2',
     [interaction.user.id, questionIndex + 1]
   )
 
@@ -55,8 +56,15 @@ export const execute = async (
   interaction.reply({
     embeds: [
       infoEmbed(
+        `Question ${questionIndex + 1}:`,
         `You answered ${
           Object.values(question.options)[Number(answerNumber) - 1]
+        }${
+          questions.length === questionIndex + 1
+            ? `\n\n` +
+              emoji.online +
+              ` You've completed the quiz! The winner will be announced on Friday!`
+            : ``
         }`
       ),
     ],
@@ -65,7 +73,7 @@ export const execute = async (
   })
 
   query(
-    `INSERT INTO quiz (userid, question, answer, time, correct) VALUES ($1, $2, $3, $4, $5)`,
+    `INSERT INTO pixxiebotbday.quiz (userid, question, answer, time, correct) VALUES ($1, $2, $3, $4, $5)`,
     [
       interaction.user.id,
       questionIndex + 1,

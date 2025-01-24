@@ -4,7 +4,7 @@ const pool = new Pool({
   host: process.env.POSTGRES_HOST,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
-  database: 'topggbday',
+  database: 'pixxiebotbday',
 })
 
 export const query = async (
